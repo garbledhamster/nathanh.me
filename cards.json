@@ -1,0 +1,16 @@
+[
+  {
+    "title": "Bleeping Computer",
+    "url": "https://bleepingcomputer.com",
+    "local_image": "assets/images/icons/cards/bleepingcomputer.com.png",
+    "public_image": "https://raw.github.com/garbledhamster/nathanh.me/main/assets/images/icons/cards/bleepingcomputer.com.png",
+    "description": "I use this daily to stay updated on my work.",
+    "alt_text": "Bleeping Computer"
+  },
+  {
+    "title": "Facebook",
+    "url": "https://facebook.com/nathan",
+    "description": "Check out my Facebook to see what I'm all about.",
+    "alt_text": "Facebook"
+  }
+]
