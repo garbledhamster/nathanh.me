@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Engineer Portal 🛠️</title>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/feather-icons"></script>
+</head>
+
+<body class="bg-black text-green-200 font-sans" onload="feather.replace()">
+
+  <!-- ✨ Header -->
+  <header class="flex items-center justify-between p-4 bg-green-700">
+    <h1 class="font-serif text-2xl">Engineer Portal 🛠️</h1>
+  </header>
+
+  <!-- ✨ Main Layout with Sidebar (from Style 1) and Content -->
+  <main class="p-4 overflow-auto" style="height:calc(100vh - 8rem);">
+    <div class="flex h-full">
+      <!-- Sidebar Menu (from Style 1) -->
+      <aside class="bg-blue-900 w-1/4 p-4 space-y-4" aria-label="Main Menu">
+        <h2 class="font-serif text-xl mb-2">Menu</h2>
+        <a href="#" class="flex items-center text-green-200 hover:text-green-400" aria-label="Tools">
+          <i data-feather="tool" class="mr-2"></i>Tools
+        </a>
+        <a href="#" class="flex items-center text-green-200 hover:text-green-400" aria-label="Customers">
+          <i data-feather="users" class="mr-2"></i>Customers
+        </a>
+        <a href="#" class="flex items-center text-green-200 hover:text-green-400" aria-label="Reports">
+          <i data-feather="file-text" class="mr-2"></i>Reports
+        </a>
+      </aside>
+
+      <!-- Main Content Area -->
+      <section class="flex-1 p-6 bg-gray-900 rounded space-y-8">
+                <!-- Style 12 Section -->
+        <section class="bg-gray-800 p-8 rounded flex flex-col items-center justify-center text-center">
+          <img src="https://picsum.photos/200/200" alt="Engineer profile" class="rounded-full mb-4" />
+          <h2 class="font-serif text-2xl mb-4">Engineer Spotlight 💡</h2>
+          <p class="mb-4 max-w-md">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Learn about the dedicated professionals driving innovation and excellence in engineering.</p>
+          <button class="bg-green-700 px-4 py-2 text-black rounded hover:bg-green-800" aria-label="View Engineer Profile">View Profile</button>
+        </section>
+        <!-- Style 11 Section -->
+        <section class="space-y-6">
+          <article class="bg-gray-800 p-4 rounded flex items-center space-x-4">
+            <img src="https://picsum.photos/100/100" alt="Project planning illustration" class="rounded" />
+            <div>
+              <h2 class="font-serif text-xl">Project Planning 📝</h2>
+              <p>Optimize your project timelines with efficient planning and tracking.</p>
+            </div>
+          </article>
+          <article class="bg-gray-800 p-4 rounded flex items-center space-x-4">
+            <img src="https://picsum.photos/101/101" alt="Equipment tracking illustration" class="rounded" />
+            <div>
+              <h2 class="font-serif text-xl">Equipment Tracking ⚙️</h2>
+              <p>Keep tabs on your tools and resources to ensure smooth operations.</p>
+            </div>
+          </article>
+        </section>
+
+
+
+      </section>
+    </div>
+  </main>
+
+  <!-- ✨ Footer -->
+  <footer class="bg-green-700 p-4 text-center">
+    <p>© 2024 Engineer Portal 🎉</p>
+  </footer>
+
+</body>
+</html>
+
