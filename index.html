@@ -94,15 +94,19 @@ section.bg-black\/30.backdrop-blur-md.p-8.flex.flex-col.items-center.justify-cen
 .bg-main-blue-lighter {
   background-color: var(--main-blue-lighter);
 }
+
+/* Ensure text and images share the same width constraints */
 .markdown-content {
   font-family: 'Open Sans', sans-serif;
   line-height: 1.8;
-  max-width: 100%;
   color: #ffffff;
-  text-align: justify;    /* Justify text for cleaner edges */
+  text-align: justify;    
   white-space: normal;
-  word-wrap: break-word;  /* Ensure text wraps nicely */
+  word-wrap: break-word;  
+  max-width: 600px;        /* Constrain max width for both text & images */
+  margin: 0 auto;          /* Center the content */
 }
+
 .markdown-content h1, 
 .markdown-content h2, 
 .markdown-content h3, 
@@ -129,9 +133,9 @@ section#cards-container article {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 1.5em 2em;     /* Add padding to left and right for squeezing content */
-  max-width: 600px;       /* Limit overall width for a consistent layout */
-  margin: 0 auto;         /* Center the cards within the container */
+  padding: 1.5em 2em;   
+  max-width: 600px;     
+  margin: 0 auto;       
 }
 
 #cards-container article h2 {
@@ -146,6 +150,7 @@ section#cards-container article {
   line-height: 1.4;
   font-style: normal;
 }
+
 .markdown-content strong,
 .markdown-content em,
 .markdown-content i,
@@ -208,26 +213,22 @@ section#cards-container article {
   filter: contrast(1.1);
 }
 
-/* Images within cards should have a uniform size */
+/* Make figure and image fill container width so text can't exceed image width */
+.markdown-content figure {
+  display: block;
+  margin: 1em auto;
+  max-width: 600px;
+  width: 100%;
+  text-align: center;
+}
 .markdown-content figure img {
   border: 3px dashed var(--main-blue-lighter);
   border-radius: 5px;
   box-shadow: 0 0 5px black;
   filter: contrast(1.1);
-  max-width: 100%;       /* Scale image to container width */
-  max-height: 250px;     /* Constrain image height to unify sizing */
-  object-fit: cover;     /* Crop the image if needed for uniform appearance */
-  margin: 0 auto;
-}
-
-/* Center images and add captions */
-.markdown-content figure {
-  display: block;
-  text-align: center;
-  margin: 1em 0;
-}
-.markdown-content figure img {
-  display: block;
+  width: 100%;       /* Image fills container width */
+  max-height: 250px; 
+  object-fit: cover;
   margin: 0 auto;
 }
 .markdown-content figure figcaption {
