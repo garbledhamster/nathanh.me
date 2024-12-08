@@ -10,7 +10,12 @@
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <style>
 html, body {
-  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow-x: hidden !important; /* Ensure no horizontal scroll on parent */
+  display: flex;
+  flex-direction: column;
 }
 :root {
   --main-green: #00852c;
@@ -49,28 +54,34 @@ section {
 .cursor-grabbing {
   cursor: grabbing;
 }
+#cards-container article {
+  /* We can remove or reduce margin-bottom since we will use space-y-6 on the container */
+  padding: 1.5em 2em;   
+  max-width: 600px;     
+  margin-bottom: 10px auto;       
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 .card-icon {
   width: 84px;
   height: 84px;
   object-fit: cover;
   background: var(--main-blue);
 }
-main {
-  scrollbar-width: none;
-}
-main::-webkit-scrollbar {
-  display: none;
-}
 header {
   background-color: var(--main-green);
+  flex-shrink: 0;
 }
 footer {
   background-color: var(--main-green);
   border-radius: 0;
+  flex-shrink: 0;
 }
 main {
-  height: calc(100vh - 8rem);
-  overflow: auto;
+  flex: 1;
+  overflow-x: hidden;
   position: relative;
 }
 #sidebar {
@@ -94,8 +105,6 @@ section.bg-black\/30.backdrop-blur-md.p-8.flex.flex-col.items-center.justify-cen
 .bg-main-blue-lighter {
   background-color: var(--main-blue-lighter);
 }
-
-/* Ensure text and images share the same width constraints */
 .markdown-content {
   font-family: 'Open Sans', sans-serif;
   line-height: 1.8;
@@ -103,10 +112,9 @@ section.bg-black\/30.backdrop-blur-md.p-8.flex.flex-col.items-center.justify-cen
   text-align: justify;    
   white-space: normal;
   word-wrap: break-word;  
-  max-width: 600px;        /* Constrain max width for both text & images */
-  margin: 0 auto;          /* Center the content */
+  max-width: 600px;        
+  margin: 0 auto;          
 }
-
 .markdown-content h1, 
 .markdown-content h2, 
 .markdown-content h3, 
@@ -117,31 +125,6 @@ section.bg-black\/30.backdrop-blur-md.p-8.flex.flex-col.items-center.justify-cen
   font-weight: bold;
   color: #ffffff;
   margin-top: 1.5em;
-  margin-bottom: 1em;
-  padding-bottom: 0.5em;
-  border-bottom: 5px solid var(--main-blue-lighter);
-  text-shadow: 1px 1px 2px black;
-  filter: contrast(1.2);
-  line-height: 1.4;
-  font-style: normal;
-}
-
-section#cards-container article {
-  margin-bottom: 1.5em;
-  padding: 1em;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 1.5em 2em;   
-  max-width: 600px;     
-  margin: 0 auto;       
-}
-
-#cards-container article h2 {
-  font-family: 'Merriweather', serif;
-  font-weight: bold;
-  color: #ffffff;
   margin-bottom: 1em;
   padding-bottom: 0.5em;
   border-bottom: 5px solid var(--main-blue-lighter);
@@ -164,19 +147,21 @@ section#cards-container article {
 .markdown-content ol {
   padding-left: 1.5em;
   margin-bottom: 1em;
+  margin-top: .5em;
+
 }
 .markdown-content ul li,
 .markdown-content ol li {
   color: #ffffff;
-  margin-left: 0.3em;
+  margin-left: 0.5em;
 }
 .markdown-content ul li::marker,
 .markdown-content ol li::marker {
-  content: "• ";
+  content: "•    ";
   color: #4da6ff;
   font-weight: bold;
   font-style: italic;
-  margin-right: 0.5em;
+  
 }
 .markdown-content a {
   color: var(--main-blue);
@@ -212,8 +197,6 @@ section#cards-container article {
   text-shadow: 1px 1px 2px black;
   filter: contrast(1.1);
 }
-
-/* Make figure and image fill container width so text can't exceed image width */
 .markdown-content figure {
   display: block;
   margin: 1em auto;
@@ -223,13 +206,14 @@ section#cards-container article {
 }
 .markdown-content figure img {
   border: 3px dashed var(--main-blue-lighter);
-  border-radius: 5px;
-  box-shadow: 0 0 5px black;
-  filter: contrast(1.1);
-  width: 100%;       /* Image fills container width */
-  max-height: 250px; 
+  border-radius: 2px;
+  box-shadow: 0 0 5px var(--main-blue-lighter);
+  filter: grayscale(50%) ;
+  width: 100%;
+  max-height: 450px; 
   object-fit: cover;
-  margin: 0 auto;
+  margin: 20px auto;
+  max-width: 450px;
 }
 .markdown-content figure figcaption {
   color: #ffffff;
@@ -238,22 +222,18 @@ section#cards-container article {
   font-size: 0.9em;
   opacity: 0.9;
 }
-
-/* ADDED GLOW EFFECT */
 article.bg-gradient-to-br.from-white\/5.via-white\/10.to-white\/5 {
   position: relative;
   box-shadow: 0 0 5px var(--main-green), 0 0 15px var(--main-blue);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
 article.bg-gradient-to-br.from-white\/5.via-white\/10.to-white\/5:hover {
   box-shadow: 0 0 10px var(--main-blue-lighter), 0 0 25px var(--main-blue);
 }
 </style>
 </head>
-<body class="relative bg-gradient-to-br from-[var(--main-black)] via-gray-900 to-[var(--main-black)] text-white font-sans antialiased" onload="feather.replace()">
-<header class="flex items-center justify-between p-4 z-50 shadow-lg">
-</header>
+<body onload="feather.replace()" class="bg-gradient-to-br from-[var(--main-black)] via-gray-900 to-[var(--main-black)] text-white font-sans antialiased">
+<header class="flex items-center justify-between p-4 z-50 shadow-lg"></header>
 <div id="menu-handle" class="fixed top-0 bottom-0 left-0 w-12 bg-transparent z-40 pointer-events-none flex items-center justify-center">
   <button id="menu-handle-button-left" class="pointer-events-auto cursor-pointer bg-transparent w-full h-full" aria-label="Toggle left menu"></button>
 </div>
@@ -268,7 +248,7 @@ article.bg-gradient-to-br.from-white\/5.via-white\/10.to-white\/5:hover {
         <div id="menu-list" class="space-y-2 text-xs pr-3"></div>
       </section>
       <div class="my-4 h-2 rounded-full bg-[var(--main-green)]"></div>
-      <section id="skills-section" class="overflow-x-auto overflow-y-hidden p-2 whitespace-nowrap cursor-grab select-none shadow-inner bg-[var(--main-black)]">
+      <section id="skills-section" class="overflow-x-auto p-2 whitespace-nowrap cursor-grab select-none shadow-inner bg-[var(--main-black)]" style="overflow-y:auto; padding-bottom:1rem;">
         <div id="skills-graph" class="flex items-end justify-start space-x-2 flex-nowrap"></div>
       </section>
     </aside>
@@ -278,7 +258,7 @@ article.bg-gradient-to-br.from-white\/5.via-white\/10.to-white\/5:hover {
         <div id="menu-list-right" class="space-y-2 text-xs pr-3"></div>
       </section>
       <div class="my-4 h-2 rounded-full bg-[var(--main-green)]"></div>
-      <section id="skills-section-right" class="overflow-x-auto overflow-y-hidden p-2 whitespace-nowrap cursor-grab select-none shadow-inner bg-[var(--main-black)]">
+      <section id="skills-section-right" class="overflow-x-auto p-2 whitespace-nowrap cursor-grab select-none shadow-inner bg-[var(--main-black)]" style="overflow-y:auto; padding-bottom:1rem;">
         <div id="skills-graph-right" class="flex items-end justify-start space-x-2 flex-nowrap"></div>
       </section>
     </aside>
@@ -287,19 +267,20 @@ article.bg-gradient-to-br.from-white\/5.via-white\/10.to-white\/5:hover {
         <img src="logo.png" alt="Engineer profile" class="mb-4 shadow-lg"/>
         <h2 class="font-serif text-2xl mb-4" style="color:#ffffff;font-weight:bold;font-style:normal;border-bottom:5px solid var(--main-blue-lighter);padding-bottom:0.5em;line-height:1.4;filter:contrast(1.2);text-shadow:1px 1px 2px black;">Nathan Homann</h2>
         <p class="mb-4 max-w-md">
-          Hi, I'm Nathan, and welcome to my professional and personal portfolio. 
-          Inside, you'll find a curated list of every tool I rely on as an IT engineer, 
-          providing quick, convenient reference points. 
-          I’ve also included a list of valuable resources that have helped shape my 
+          Hi, I'm Nathan, and welcome to my professional and personal portfolio.
+          Inside, you'll find a curated list of every tool I rely on as an IT engineer,
+          providing quick, convenient reference points.
+          I’ve also included a list of valuable resources that have helped shape my
           journey and skill set over the years.
         </p>
         <button class="px-4 py-2 text-white rounded-lg hover:bg-[var(--main-blue)] transition-colors shadow-md linkedin-btn" aria-label="Open LinkedIn Profile">LinkedIn</button>
       </section>
-      <section class="space-y-6" id="cards-container"></section>
+      <!-- Add space between cards by using flex, flex-col, and space-y-6 -->
+      <section class="flex flex-col space-y-6" id="cards-container"></section>
     </section>
   </div>
 </main>
-<footer class="p-4 text-center fixed bottom-0 left-0 w-full z-50 shadow-lg">
+<footer class="p-4 text-center z-50 shadow-lg">
   <p>© 2024</p>
 </footer>
 <script>
@@ -309,32 +290,25 @@ fetch('cards.json')
     const container = document.getElementById('cards-container');
     const menuList = document.getElementById('menu-list');
     const menuListRight = document.getElementById('menu-list-right');
-
     data.forEach((card) => {
       let domain = '';
       if (card.url) {
         try {
           const urlObj = new URL(card.url);
           domain = urlObj.hostname;
-        } catch (e) {
-          console.error('Invalid URL in card:', card.url, e);
-        }
+        } catch (e) {}
       }
-
-      // Handle Toolbox (Type === "Tool")
       if (card.Type === "Tool") {
         const menuItem = document.createElement('a');
         menuItem.href = '#';
         menuItem.className = 'flex items-center text-white hover:text-white hover:bg-[var(--main-blue)] p-1 space-x-2 transition-colors shadow-sm rounded-lg';
         menuItem.ariaLabel = card.title;
-
         let iconUrl = '';
         if (card.public_image || card.local_image) {
           iconUrl = card.public_image || card.local_image;
         } else if (domain) {
           iconUrl = `https://www.google.com/s2/favicons?sz=64&domain=${domain}`;
         }
-
         if (iconUrl) {
           const iconImg = document.createElement('img');
           iconImg.src = iconUrl;
@@ -349,30 +323,23 @@ fetch('cards.json')
           };
           menuItem.appendChild(iconImg);
         } else {
-          // Fallback to a feather icon
           const fallbackIcon = document.createElement('span');
           fallbackIcon.setAttribute('data-feather', 'tool');
-          fallbackIcon.style.color = '#fff';
+          fallbackIcon.style.color='#fff';
           menuItem.appendChild(fallbackIcon);
         }
-
         const menuText = document.createElement('span');
         menuText.textContent = card.title;
         menuItem.appendChild(menuText);
-
         menuList.appendChild(menuItem);
-        // Clone menu item for right side
         const menuItemRight = menuItem.cloneNode(true);
         menuListRight.appendChild(menuItemRight);
       } else if (card.Type === "Body") {
-        // Create a body card
         const article = document.createElement('article');
         article.className = 'bg-gradient-to-br from-white/5 via-white/10 to-white/5 backdrop-blur-lg p-4 rounded-lg flex flex-col space-y-4 shadow-lg transition-transform';
-
         const contentDiv = document.createElement('div');
         const titleEl = document.createElement('h2');
         titleEl.className = 'font-serif text-xl';
-
         if (card.url) {
           const link = document.createElement('a');
           link.href = card.url;
@@ -388,27 +355,19 @@ fetch('cards.json')
         } else {
           titleEl.textContent = card.title;
         }
-
         contentDiv.appendChild(titleEl);
         const descEl = document.createElement('div');
         try {
           const parsed = marked.parse(card.description || '');
           descEl.innerHTML = `<div class="markdown-content">${parsed}</div>`;
         } catch (err) {
-          console.error('Error parsing markdown for card:', card.title, err);
           descEl.innerHTML = `<div class="markdown-content">${card.description || ''}</div>`;
         }
         contentDiv.appendChild(descEl);
-
         article.appendChild(contentDiv);
         container.appendChild(article);
-      } else {
-        // If Type is something else, just skip or log
-        console.warn('Unknown card type:', card.Type, card);
       }
     });
-
-    // Transform images into figure/figcaption
     const markdownContents = document.querySelectorAll('.markdown-content');
     markdownContents.forEach(content => {
       const images = content.querySelectorAll('img');
@@ -425,11 +384,9 @@ fetch('cards.json')
         img.replaceWith(figure);
       });
     });
-
-    // After all items are processed, replace feather icons
     feather.replace();
   })
-  .catch(error => console.error('Error loading cards:', error));
+  .catch(error => {});
 </script>
 <script>
 fetch('skills.json')
@@ -473,7 +430,7 @@ fetch('skills.json')
       graphContainerRight.appendChild(barWrapperRight);
     });
   })
-  .catch(error=>console.error('Error loading skills:',error));
+  .catch(error=>{});
 </script>
 <script>
 const skillsSection=document.getElementById('skills-section');
@@ -505,7 +462,6 @@ skillsSection.addEventListener('wheel',(e)=>{
   e.preventDefault();
   skillsSection.scrollLeft += e.deltaY;
 });
-
 const skillsSectionRight=document.getElementById('skills-section-right');
 let isDownRight=false;
 let startXRight;
@@ -535,21 +491,18 @@ skillsSectionRight.addEventListener('wheel',(e)=>{
   e.preventDefault();
   skillsSectionRight.scrollLeft += e.deltaY;
 });
-
 const sidebar=document.getElementById('sidebar');
 const menuHandleButtonLeft=document.getElementById('menu-handle-button-left');
 function toggleSidebar(){
   sidebar.classList.toggle('-translate-x-full');
 }
 menuHandleButtonLeft.addEventListener('click',toggleSidebar);
-
 const sidebarRight=document.getElementById('sidebar-right');
 const menuHandleButtonRight=document.getElementById('menu-handle-button-right');
 function toggleSidebarRight(){
   sidebarRight.classList.toggle('translate-x-full');
 }
 menuHandleButtonRight.addEventListener('click',toggleSidebarRight);
-
 document.addEventListener('click',(e)=>{
   const isClickInsideSidebar=sidebar.contains(e.target);
   const isClickOnToggle=menuHandleButtonLeft.contains(e.target);
