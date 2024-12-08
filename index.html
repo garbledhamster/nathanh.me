@@ -2,23 +2,22 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
-<!-- 🏆 Viewport & full-screen for mobile -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no"/>
 <meta name="mobile-web-app-capable" content="yes"/>
 <meta name="apple-mobile-web-app-capable" content="yes"/>
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
 <meta name="apple-mobile-web-app-title" content="Nathan Homann"/>
-<!-- For iOS fullscreen app-like usage -->
-<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
-<!-- For splash screens on various iOS devices (optional) -->
-<link rel="apple-touch-startup-image" href="icons/apple-splash.png" media="(device-width: 375px)">
 
-<!-- Manifest for Android/Chromium-based browsers -->
+<!-- Use logo.png for favicon -->
+<link rel="icon" href="logo.png" type="image/png">
+
+<!-- Apple Touch Icon -->
+<link rel="apple-touch-icon" href="logo.png">
+
+<!-- Android/Chromium Manifest -->
 <link rel="manifest" href="manifest.json">
 
 <title>👨‍💻 Nathan Homann</title>
-
-<!-- Google Fonts, Tailwind, Feather, Marked -->
 <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://unpkg.com/feather-icons"></script>
@@ -253,12 +252,10 @@ article.bg-gradient-to-br.from-white\/5.via-white\/10.to-white\/5:hover {
 <body class="bg-gradient-to-br from-[var(--main-black)] via-gray-900 to-[var(--main-black)] text-white font-sans antialiased" onload="feather.replace()">
 <header class="flex items-center justify-between p-4 z-50 shadow-lg"></header>
 
-<!-- Left menu handle -->
 <div id="menu-handle" class="fixed top-0 bottom-0 left-0 w-12 bg-transparent z-40 pointer-events-none flex items-center justify-center">
   <button id="menu-handle-button-left" class="pointer-events-auto cursor-pointer bg-transparent w-full h-full" aria-label="Toggle left menu"></button>
 </div>
 
-<!-- Right menu handle -->
 <div id="menu-handle-right" class="fixed top-0 bottom-0 right-0 w-12 bg-transparent z-40 pointer-events-none flex items-center justify-center">
   <button id="menu-handle-button-right" class="pointer-events-auto cursor-pointer bg-transparent w-full h-full" aria-label="Toggle right menu"></button>
 </div>
@@ -309,7 +306,6 @@ article.bg-gradient-to-br.from-white\/5.via-white\/10.to-white\/5:hover {
   <p>© 2024</p>
 </footer>
 
-<!-- PWA service worker registration -->
 <script>
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
@@ -319,7 +315,6 @@ if ('serviceWorker' in navigator) {
 }
 </script>
 
-<!-- Fetch and parse cards -->
 <script>
 fetch('cards.json')
   .then(response => response.json())
@@ -340,36 +335,41 @@ fetch('cards.json')
         menuItem.href = '#';
         menuItem.className = 'flex items-center text-white hover:text-white hover:bg-[var(--main-blue)] p-1 space-x-2 transition-colors shadow-sm rounded-lg';
         menuItem.ariaLabel = card.title;
+
+        // Attempt to use domain-specific icon, else fallback to logo.png
         let iconUrl = '';
         if (card.public_image || card.local_image) {
           iconUrl = card.public_image || card.local_image;
         } else if (domain) {
-          iconUrl = `https://www.google.com/s2/favicons?sz=64&domain=${domain}`;
-        }
-        if (iconUrl) {
-          const iconImg = document.createElement('img');
-          iconImg.src = iconUrl;
-          iconImg.alt = card.title + ' icon';
-          iconImg.className = 'w-4 h-4';
-          iconImg.loading = 'lazy';
-          iconImg.onerror = () => {
-            iconImg.remove();
-            const fallbackIcon = document.createElement('span');
-            fallbackIcon.setAttribute('data-feather', 'tool');
-            fallbackIcon.style.color = '#fff';
-            menuItem.insertBefore(fallbackIcon, menuItem.firstChild);
-          };
-          menuItem.appendChild(iconImg);
+          // If you don't want the Google icon, comment this out:
+          // iconUrl = `https://www.google.com/s2/favicons?sz=64&domain=${domain}`;
+          // Instead, use logo.png as a fallback
+          iconUrl = 'logo.png';
         } else {
-          const fallbackIcon = document.createElement('span');
-          fallbackIcon.setAttribute('data-feather', 'tool');
-          fallbackIcon.style.color='#fff';
-          menuItem.appendChild(fallbackIcon);
+          iconUrl = 'logo.png';
         }
+
+        const iconImg = document.createElement('img');
+        iconImg.src = iconUrl;
+        iconImg.alt = card.title + ' icon';
+        iconImg.className = 'w-4 h-4';
+        iconImg.loading = 'lazy';
+        iconImg.onerror = () => {
+          // If icon fails to load, use feather icon
+          iconImg.remove();
+          const fallbackIcon = document.createElement('img');
+          fallbackIcon.src = 'logo.png';
+          fallbackIcon.alt = card.title + ' fallback icon';
+          fallbackIcon.className = 'w-4 h-4';
+          menuItem.insertBefore(fallbackIcon, menuItem.firstChild);
+        };
+        menuItem.appendChild(iconImg);
+
         const menuText = document.createElement('span');
         menuText.textContent = card.title;
         menuItem.appendChild(menuText);
         menuList.appendChild(menuItem);
+
         const menuItemRight = menuItem.cloneNode(true);
         menuListRight.appendChild(menuItemRight);
       } else if (card.Type === "Body") {
@@ -428,7 +428,6 @@ fetch('cards.json')
   .catch(error => {});
 </script>
 
-<!-- Fetch and parse skills -->
 <script>
 fetch('skills.json')
   .then(response=>response.json())
@@ -444,17 +443,17 @@ fetch('skills.json')
       iconWrapper.className='w-8 h-8 rounded-full flex items-center justify-center shadow-inner';
       iconWrapper.style.background=`linear-gradient(to top, var(--main-green) ${percentage}%, var(--main-blue) ${percentage}%)`;
       const iconImg=document.createElement('img');
-      iconImg.src=icon;
+      iconImg.src=icon || 'logo.png'; // fallback to logo if skill icon fails
       iconImg.alt=skill+' icon';
       iconImg.className='w-4 h-4';
       iconImg.loading='lazy';
       iconImg.addEventListener('error',()=>{
         iconWrapper.innerHTML='';
-        const span=document.createElement('span');
-        span.setAttribute('data-feather','tool');
-        span.style.color='#fff';
-        iconWrapper.appendChild(span);
-        feather.replace();
+        const fallbackImg=document.createElement('img');
+        fallbackImg.src='logo.png';
+        fallbackImg.alt=skill+' fallback icon';
+        fallbackImg.className='w-4 h-4';
+        iconWrapper.appendChild(fallbackImg);
       });
       iconWrapper.appendChild(iconImg);
       const label=document.createElement('div');
@@ -475,7 +474,6 @@ fetch('skills.json')
   .catch(error=>{});
 </script>
 
-<!-- Drag scroll for skills sections -->
 <script>
 const skillsSection=document.getElementById('skills-section');
 let isDown=false;
