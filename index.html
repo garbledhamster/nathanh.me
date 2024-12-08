@@ -13,9 +13,11 @@ html, body {
   margin: 0;
   padding: 0;
   height: 100%;
-  overflow-x: hidden !important; /* Ensure no horizontal scroll on parent */
+  overflow-x: hidden !important;
   display: flex;
   flex-direction: column;
+  /* Smooth scroll behavior */
+  scroll-behavior: smooth;
 }
 :root {
   --main-green: #00852c;
@@ -41,6 +43,8 @@ section::-webkit-scrollbar-thumb:hover {
 section {
   scrollbar-color: var(--main-green) var(--main-blue);
   scrollbar-width: thin;
+  /* Improve scrolling performance */
+  will-change: transform;
 }
 .vertical-text {
   font-family: monospace;
@@ -55,9 +59,8 @@ section {
   cursor: grabbing;
 }
 #cards-container article {
-  /* We can remove or reduce margin-bottom since we will use space-y-6 on the container */
   padding: 1.5em 2em;   
-  max-width: 600px;     
+  max-width: 600px;
   margin-bottom: 10px auto;       
   display: flex;
   flex-direction: column;
@@ -86,9 +89,13 @@ main {
 }
 #sidebar {
   border-right: 4px solid var(--main-green);
+  transition: transform 0.3s ease; /* smooth sidebar toggle */
+  will-change: transform;
 }
 #sidebar-right {
   border-left: 4px solid var(--main-green);
+  transition: transform 0.3s ease; /* smooth sidebar toggle */
+  will-change: transform;
 }
 section.flex-1.p-6.backdrop-blur-sm.space-y-8.overflow-auto.ml-0.shadow-xl {
   background-color: rgba(0,0,0,0.5);
@@ -148,7 +155,6 @@ section.bg-black\/30.backdrop-blur-md.p-8.flex.flex-col.items-center.justify-cen
   padding-left: 1.5em;
   margin-bottom: 1em;
   margin-top: .5em;
-
 }
 .markdown-content ul li,
 .markdown-content ol li {
@@ -248,7 +254,7 @@ article.bg-gradient-to-br.from-white\/5.via-white\/10.to-white\/5:hover {
         <div id="menu-list" class="space-y-2 text-xs pr-3"></div>
       </section>
       <div class="my-4 h-2 rounded-full bg-[var(--main-green)]"></div>
-      <section id="skills-section" class="overflow-x-auto p-2 whitespace-nowrap cursor-grab select-none shadow-inner bg-[var(--main-black)]" style="overflow-y:auto; padding-bottom:1rem;">
+      <section id="skills-section" class="overflow-x-auto p-2 whitespace-nowrap cursor-grab select-none shadow-inner bg-[var(--main-black)]" style="overflow-y:auto; padding-bottom:1rem; will-change:transform;">
         <div id="skills-graph" class="flex items-end justify-start space-x-2 flex-nowrap"></div>
       </section>
     </aside>
@@ -258,13 +264,14 @@ article.bg-gradient-to-br.from-white\/5.via-white\/10.to-white\/5:hover {
         <div id="menu-list-right" class="space-y-2 text-xs pr-3"></div>
       </section>
       <div class="my-4 h-2 rounded-full bg-[var(--main-green)]"></div>
-      <section id="skills-section-right" class="overflow-x-auto p-2 whitespace-nowrap cursor-grab select-none shadow-inner bg-[var(--main-black)]" style="overflow-y:auto; padding-bottom:1rem;">
+      <section id="skills-section-right" class="overflow-x-auto p-2 whitespace-nowrap cursor-grab select-none shadow-inner bg-[var(--main-black)]" style="overflow-y:auto; padding-bottom:1rem; will-change:transform;">
         <div id="skills-graph-right" class="flex items-end justify-start space-x-2 flex-nowrap"></div>
       </section>
     </aside>
-    <section class="flex-1 p-6 backdrop-blur-sm space-y-8 overflow-auto ml-0 shadow-xl">
+    <section class="flex-1 p-6 backdrop-blur-sm space-y-8 overflow-auto ml-0 shadow-xl" style="will-change:transform;">
       <section class="bg-black/30 backdrop-blur-md p-8 flex flex-col items-center justify-center text-center shadow-lg">
-        <img src="logo.png" alt="Engineer profile" class="mb-4 shadow-lg"/>
+        <!-- Lazy loading for better performance -->
+        <img src="logo.png" alt="Engineer profile" class="mb-4 shadow-lg" loading="lazy"/>
         <h2 class="font-serif text-2xl mb-4" style="color:#ffffff;font-weight:bold;font-style:normal;border-bottom:5px solid var(--main-blue-lighter);padding-bottom:0.5em;line-height:1.4;filter:contrast(1.2);text-shadow:1px 1px 2px black;">Nathan Homann</h2>
         <p class="mb-4 max-w-md">
           Hi, I'm Nathan, and welcome to my professional and personal portfolio.
@@ -275,8 +282,7 @@ article.bg-gradient-to-br.from-white\/5.via-white\/10.to-white\/5:hover {
         </p>
         <button class="px-4 py-2 text-white rounded-lg hover:bg-[var(--main-blue)] transition-colors shadow-md linkedin-btn" aria-label="Open LinkedIn Profile">LinkedIn</button>
       </section>
-      <!-- Add space between cards by using flex, flex-col, and space-y-6 -->
-      <section class="flex flex-col space-y-6" id="cards-container"></section>
+      <section class="flex flex-col space-y-6" id="cards-container" style="will-change:transform;"></section>
     </section>
   </div>
 </main>
@@ -314,6 +320,7 @@ fetch('cards.json')
           iconImg.src = iconUrl;
           iconImg.alt = card.title + ' icon';
           iconImg.className = 'w-4 h-4';
+          iconImg.loading = 'lazy';
           iconImg.onerror = () => {
             iconImg.remove();
             const fallbackIcon = document.createElement('span');
@@ -372,6 +379,7 @@ fetch('cards.json')
     markdownContents.forEach(content => {
       const images = content.querySelectorAll('img');
       images.forEach(img => {
+        img.loading = 'lazy';
         const altText = img.getAttribute('alt') || '';
         const figure = document.createElement('figure');
         const figImg = img.cloneNode(true);
@@ -406,6 +414,7 @@ fetch('skills.json')
       iconImg.src=icon;
       iconImg.alt=skill+' icon';
       iconImg.className='w-4 h-4';
+      iconImg.loading='lazy';
       iconImg.addEventListener('error',()=>{
         iconWrapper.innerHTML='';
         const span=document.createElement('span');
@@ -462,6 +471,7 @@ skillsSection.addEventListener('wheel',(e)=>{
   e.preventDefault();
   skillsSection.scrollLeft += e.deltaY;
 });
+
 const skillsSectionRight=document.getElementById('skills-section-right');
 let isDownRight=false;
 let startXRight;
@@ -491,18 +501,21 @@ skillsSectionRight.addEventListener('wheel',(e)=>{
   e.preventDefault();
   skillsSectionRight.scrollLeft += e.deltaY;
 });
+
 const sidebar=document.getElementById('sidebar');
 const menuHandleButtonLeft=document.getElementById('menu-handle-button-left');
 function toggleSidebar(){
   sidebar.classList.toggle('-translate-x-full');
 }
 menuHandleButtonLeft.addEventListener('click',toggleSidebar);
+
 const sidebarRight=document.getElementById('sidebar-right');
 const menuHandleButtonRight=document.getElementById('menu-handle-button-right');
 function toggleSidebarRight(){
   sidebarRight.classList.toggle('translate-x-full');
 }
 menuHandleButtonRight.addEventListener('click',toggleSidebarRight);
+
 document.addEventListener('click',(e)=>{
   const isClickInsideSidebar=sidebar.contains(e.target);
   const isClickOnToggle=menuHandleButtonLeft.contains(e.target);
