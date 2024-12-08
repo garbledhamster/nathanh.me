@@ -71,10 +71,10 @@ section {
 .cursor-grabbing {
   cursor: grabbing;
 }
+/* Removed custom margin-bottom: 10px auto; from articles to let Tailwind handle centering */
 #cards-container article {
   padding: 1.5em 2em;   
   max-width: 600px;
-  margin-bottom: 10px auto;       
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -297,7 +297,9 @@ article.bg-gradient-to-br.from-white\/5.via-white\/10.to-white\/5:hover {
         </p>
         <button class="px-4 py-2 text-white rounded-lg hover:bg-[var(--main-blue)] transition-colors shadow-md linkedin-btn" aria-label="Open LinkedIn Profile">LinkedIn</button>
       </section>
-      <section class="flex flex-col space-y-6" id="cards-container" style="will-change:transform;"></section>
+
+      <!-- Added items-center to ensure articles align center -->
+      <section class="flex flex-col space-y-6 items-center" id="cards-container" style="will-change:transform;"></section>
     </section>
   </div>
 </main>
@@ -340,11 +342,6 @@ fetch('cards.json')
         let iconUrl = '';
         if (card.public_image || card.local_image) {
           iconUrl = card.public_image || card.local_image;
-        } else if (domain) {
-          // If you don't want the Google icon, comment this out:
-          // iconUrl = `https://www.google.com/s2/favicons?sz=64&domain=${domain}`;
-          // Instead, use logo.png as a fallback
-          iconUrl = 'logo.png';
         } else {
           iconUrl = 'logo.png';
         }
@@ -355,7 +352,6 @@ fetch('cards.json')
         iconImg.className = 'w-4 h-4';
         iconImg.loading = 'lazy';
         iconImg.onerror = () => {
-          // If icon fails to load, use feather icon
           iconImg.remove();
           const fallbackIcon = document.createElement('img');
           fallbackIcon.src = 'logo.png';
@@ -375,6 +371,7 @@ fetch('cards.json')
       } else if (card.Type === "Body") {
         const article = document.createElement('article');
         article.className = 'bg-gradient-to-br from-white/5 via-white/10 to-white/5 backdrop-blur-lg p-4 rounded-lg flex flex-col space-y-4 shadow-lg transition-transform';
+        
         const contentDiv = document.createElement('div');
         const titleEl = document.createElement('h2');
         titleEl.className = 'font-serif text-xl';
@@ -394,6 +391,7 @@ fetch('cards.json')
           titleEl.textContent = card.title;
         }
         contentDiv.appendChild(titleEl);
+
         const descEl = document.createElement('div');
         try {
           const parsed = marked.parse(card.description || '');
@@ -403,6 +401,7 @@ fetch('cards.json')
         }
         contentDiv.appendChild(descEl);
         article.appendChild(contentDiv);
+
         container.appendChild(article);
       }
     });
@@ -443,7 +442,7 @@ fetch('skills.json')
       iconWrapper.className='w-8 h-8 rounded-full flex items-center justify-center shadow-inner';
       iconWrapper.style.background=`linear-gradient(to top, var(--main-green) ${percentage}%, var(--main-blue) ${percentage}%)`;
       const iconImg=document.createElement('img');
-      iconImg.src=icon || 'logo.png'; // fallback to logo if skill icon fails
+      iconImg.src=icon || 'logo.png';
       iconImg.alt=skill+' icon';
       iconImg.className='w-4 h-4';
       iconImg.loading='lazy';
