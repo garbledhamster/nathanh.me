@@ -1,16 +1,236 @@
 [
   {
-    "title": "Bleeping Computer",
-    "url": "https://bleepingcomputer.com",
-    "local_image": "assets/images/icons/cards/bleepingcomputer.com.png",
-    "public_image": "https://raw.github.com/garbledhamster/nathanh.me/main/assets/images/icons/cards/bleepingcomputer.com.png",
-    "description": "I use this daily to stay updated on my work.",
-    "alt_text": "Bleeping Computer"
+    "title": "SecurityTrails",
+    "url": "https://securitytrails.com",
+    "local_image": "https://picsum.photos/200/300?random=1",
+    "public_image": "https://picsum.photos/200/300?random=1",
+    "description": "DNS, IP, and domain intel to track assets and troubleshoot DNS issues easily.",
+    "alt_text": "SecurityTrails",
+    "Type": "Tool"
   },
   {
-    "title": "Facebook",
-    "url": "https://facebook.com/nathan",
-    "description": "Check out my Facebook to see what I'm all about.",
-    "alt_text": "Facebook"
+    "title": "VMware Tools Latest Release",
+    "url": "https://packages.vmware.com/tools/releases/latest/windows/",
+    "local_image": "https://picsum.photos/200/300?random=2",
+    "public_image": "https://picsum.photos/200/300?random=2",
+    "description": "Direct download for the latest VMware Tools to keep your VMs optimized.",
+    "alt_text": "VMware Tools Latest",
+    "Type": "Tool"
+  },
+  {
+    "title": "Microsoft Sysinternals",
+    "url": "https://learn.microsoft.com/en-us/sysinternals/",
+    "local_image": "https://picsum.photos/200/300?random=3",
+    "public_image": "https://picsum.photos/200/300?random=3",
+    "description": "Essential tools for Windows troubleshooting and system optimization.",
+    "alt_text": "Microsoft Sysinternals",
+    "Type": "Tool"
+  },
+  {
+    "title": "BleepingComputer",
+    "url": "https://www.bleepingcomputer.com/",
+    "local_image": "https://picsum.photos/200/300?random=4",
+    "public_image": "https://picsum.photos/200/300?random=4",
+    "description": "Go-to resource for security news, guides, and malware removal tips.",
+    "alt_text": "BleepingComputer",
+    "Type": "Tool"
+  },
+  {
+    "title": "Google Toolbox DIG",
+    "url": "https://toolbox.googleapps.com/apps/dig/",
+    "local_image": "https://picsum.photos/200/300?random=5",
+    "public_image": "https://picsum.photos/200/300?random=5",
+    "description": "Quickly query DNS records to troubleshoot domain issues.",
+    "alt_text": "Google Toolbox DIG",
+    "Type": "Tool"
+  },
+  {
+    "title": "Google Toolbox CheckMX",
+    "url": "https://toolbox.googleapps.com/apps/checkmx/",
+    "local_image": "https://picsum.photos/200/300?random=6",
+    "public_image": "https://picsum.photos/200/300?random=6",
+    "description": "Test mail server settings and ensure SPF, DKIM, and DMARC compliance.",
+    "alt_text": "Google Toolbox CheckMX",
+    "Type": "Tool"
+  },
+  {
+    "title": "MXToolbox",
+    "url": "https://mxtoolbox.com/",
+    "local_image": "https://picsum.photos/200/300?random=7",
+    "public_image": "https://picsum.photos/200/300?random=7",
+    "description": "Test DNS, mail servers, and blacklists to fix network issues fast.",
+    "alt_text": "MXToolbox",
+    "Type": "Tool"
+  },
+  {
+    "title": "Send Test Email",
+    "url": "https://sendtestemail.com/",
+    "local_image": "https://picsum.photos/200/300?random=8",
+    "public_image": "https://picsum.photos/200/300?random=8",
+    "description": "Quickly test email delivery and headers for troubleshooting.",
+    "alt_text": "Send Test Email",
+    "Type": "Tool"
+  },
+  {
+    "title": "Shodan",
+    "url": "https://www.shodan.io/",
+    "local_image": "https://picsum.photos/200/300?random=9",
+    "public_image": "https://picsum.photos/200/300?random=9",
+    "description": "Find and analyze internet-facing devices for exposure and security gaps.",
+    "alt_text": "Shodan",
+    "Type": "Tool"
+  },
+  {
+    "title": "NIST National Vulnerability Database",
+    "url": "https://nvd.nist.gov/",
+    "local_image": "https://picsum.photos/200/300?random=10",
+    "public_image": "https://picsum.photos/200/300?random=10",
+    "description": "Track known software vulnerabilities for proactive mitigation.",
+    "alt_text": "NIST Vulnerability Database",
+    "Type": "Tool"
+  },
+  {
+    "title": "Cloudflare Security Tools",
+    "url": "https://www.cloudflare.com/diagnostic-center/",
+    "local_image": "https://picsum.photos/200/300?random=11",
+    "public_image": "https://picsum.photos/200/300?random=11",
+    "description": "SSL, DNS, and security diagnostics to fortify your web presence.",
+    "alt_text": "Cloudflare Security Tools",
+    "Type": "Tool"
+  },
+  {
+    "title": "About Me",
+    "url": "#",
+    "local_image": "https://picsum.photos/200/300?random=12",
+    "public_image": "https://picsum.photos/200/300?random=12",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sodales nulla ac enim finibus, a placerat enim pharetra. Vivamus porttitor posuere ultrices.",
+    "alt_text": "About Me",
+    "Type": "Body"
+  },
+  {
+    "title": "Professional Background",
+    "url": "#",
+    "local_image": "https://picsum.photos/200/300?random=13",
+    "public_image": "https://picsum.photos/200/300?random=13",
+    "description": "Summarize career highlights, including years of experience, current role, and previous notable positions. Highlight industry areas of expertise and the overall journey.",
+    "alt_text": "Professional Background",
+    "Type": "Body"
+  },
+  {
+    "title": "Core Skills & Expertise",
+    "url": "#",
+    "local_image": "https://picsum.photos/200/300?random=14",
+    "public_image": "https://picsum.photos/200/300?random=14",
+    "description": "List key technical and soft skills—programming languages, frameworks, communication, leadership, and problem-solving. Emphasize the unique skill set that differentiates you.",
+    "alt_text": "Skills & Expertise",
+    "Type": "Body"
+  },
+  {
+    "title": "Core Values & Principles",
+    "url": "#",
+    "local_image": "https://picsum.photos/200/300?random=15",
+    "public_image": "https://picsum.photos/200/300?random=15",
+    "description": "Highlight guiding principles—integrity, collaboration, continuous learning, and innovation. These values communicate your professional ethos and approach to team dynamics.",
+    "alt_text": "Core Values & Principles",
+    "Type": "Body"
+  },
+  {
+    "title": "Tools & Technologies",
+    "url": "#",
+    "local_image": "https://picsum.photos/200/300?random=16",
+    "public_image": "https://picsum.photos/200/300?random=16",
+    "description": "Showcase the tools, platforms, and technologies you rely on—IDEs, version control, cloud platforms, testing frameworks, and design software—giving insight into your technical ecosystem.",
+    "alt_text": "Tools & Technologies",
+    "Type": "Body"
+  },
+  {
+    "title": "Notable Projects & Achievements",
+    "url": "#",
+    "local_image": "https://picsum.photos/200/300?random=17",
+    "public_image": "https://picsum.photos/200/300?random=17",
+    "description": "Highlight select projects that best illustrate your capabilities—successful product launches, impactful contributions to open-source, awards, and measurable outcomes.",
+    "alt_text": "Notable Achievements",
+    "Type": "Body"
+  },
+  {
+    "title": "Educational Background & Certifications",
+    "url": "#",
+    "local_image": "https://picsum.photos/200/300?random=18",
+    "public_image": "https://picsum.photos/200/300?random=18",
+    "description": "Mention relevant degrees, certifications, and specialized training. This includes formal education, online courses, and any professional development programs completed.",
+    "alt_text": "Education & Certifications",
+    "Type": "Body"
+  },
+  {
+    "title": "Professional Background",
+    "url": "#",
+    "local_image": "https://picsum.photos/200/300?random=19",
+    "public_image": "https://picsum.photos/200/300?random=19",
+    "description": "Summarize career highlights, including years of experience, current role, and previous notable positions. Highlight industry areas of expertise and the overall journey.",
+    "alt_text": "Professional Background",
+    "Type": "Body"
+  },
+  {
+    "title": "Core Skills & Expertise",
+    "url": "#",
+    "local_image": "https://picsum.photos/200/300?random=20",
+    "public_image": "https://picsum.photos/200/300?random=20",
+    "description": "List key technical and soft skills—programming languages, frameworks, communication, leadership, and problem-solving. Emphasize the unique skill set that differentiates you.",
+    "alt_text": "Skills & Expertise",
+    "Type": "Body"
+  },
+  {
+    "title": "Core Values & Principles",
+    "url": "#",
+    "local_image": "https://picsum.photos/200/300?random=21",
+    "public_image": "https://picsum.photos/200/300?random=21",
+    "description": "Highlight guiding principles—integrity, collaboration, continuous learning, and innovation. These values communicate your professional ethos and approach to team dynamics.",
+    "alt_text": "Core Values & Principles",
+    "Type": "Body"
+  },
+  {
+    "title": "Tools & Technologies",
+    "url": "#",
+    "local_image": "https://picsum.photos/200/300?random=22",
+    "public_image": "https://picsum.photos/200/300?random=22",
+    "description": "Showcase the tools, platforms, and technologies you rely on—IDEs, version control, cloud platforms, testing frameworks, and design software—giving insight into your technical ecosystem.",
+    "alt_text": "Tools & Technologies",
+    "Type": "Body"
+  },
+  {
+    "title": "Notable Projects & Achievements",
+    "url": "#",
+    "local_image": "https://picsum.photos/200/300?random=23",
+    "public_image": "https://picsum.photos/200/300?random=23",
+    "description": "Highlight select projects that best illustrate your capabilities—successful product launches, impactful contributions to open-source, awards, and measurable outcomes.",
+    "alt_text": "Notable Achievements",
+    "Type": "Body"
+  },
+  {
+    "title": "Educational Background & Certifications",
+    "url": "#",
+    "local_image": "https://picsum.photos/200/300?random=24",
+    "public_image": "https://picsum.photos/200/300?random=24",
+    "description": "Mention relevant degrees, certifications, and specialized training. This includes formal education, online courses, and any professional development programs completed.",
+    "alt_text": "Education & Certifications",
+    "Type": "Body"
+  },
+  {
+    "title": "Contact & Collaboration",
+    "url": "#",
+    "local_image": "https://picsum.photos/200/300?random=25",
+    "public_image": "https://picsum.photos/200/300?random=25",
+    "description": "Provide details on how to get in touch—email, professional networking profiles, portfolio links—and emphasize openness to new projects, partnerships, or mentorship opportunities.",
+    "alt_text": "Contact Information",
+    "Type": "Body"
+  },
+  {
+    "title": "Contact & Collaboration",
+    "url": "#",
+    "local_image": "https://picsum.photos/200/300?random=26",
+    "public_image": "https://picsum.photos/200/300?random=26",
+    "description": "Provide details on how to get in touch—email, professional networking profiles, portfolio links—and emphasize openness to new projects, partnerships, or mentorship opportunities.",
+    "alt_text": "Contact Information",
+    "Type": "Body"
   }
 ]

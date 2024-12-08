@@ -1,0 +1,13 @@
+[
+    { "skill": "Communication",       "icon": "https://unpkg.com/feather-icons@4.28.0/dist/icons/message-circle.svg",    "level": 7 },
+    { "skill": "Adaptability",        "icon": "https://unpkg.com/feather-icons@4.28.0/dist/icons/refresh-cw.svg",        "level": 3 },
+    { "skill": "Teamwork",            "icon": "https://unpkg.com/feather-icons@4.28.0/dist/icons/users.svg",             "level": 5 },
+    { "skill": "Problem-Solving",     "icon": "https://unpkg.com/feather-icons@4.28.0/dist/icons/zap.svg",               "level": 8 },
+    { "skill": "Creativity",          "icon": "https://unpkg.com/feather-icons@4.28.0/dist/icons/feather.svg",           "level": 4 },
+    { "skill": "Time Management",     "icon": "https://unpkg.com/feather-icons@4.28.0/dist/icons/clock.svg",             "level": 6 },
+    { "skill": "Leadership",          "icon": "https://unpkg.com/feather-icons@4.28.0/dist/icons/star.svg",              "level": 9 },
+    { "skill": "Strategic Thinking",  "icon": "https://unpkg.com/feather-icons@4.28.0/dist/icons/compass.svg",           "level": 7 },
+    { "skill": "Resilience",          "icon": "https://unpkg.com/feather-icons@4.28.0/dist/icons/shield.svg",            "level": 5 },
+    { "skill": "Critical Thinking",   "icon": "https://unpkg.com/feather-icons@4.28.0/dist/icons/cpu.svg",               "level": 8 }
+  ]
+  
