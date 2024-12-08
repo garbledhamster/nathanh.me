@@ -2,12 +2,28 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, viewport-fit=cover"/>
-<title>Nathan Homann</title>
+<!-- 🏆 Viewport & full-screen for mobile -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no"/>
+<meta name="mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<meta name="apple-mobile-web-app-title" content="Nathan Homann"/>
+<!-- For iOS fullscreen app-like usage -->
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<!-- For splash screens on various iOS devices (optional) -->
+<link rel="apple-touch-startup-image" href="icons/apple-splash.png" media="(device-width: 375px)">
+
+<!-- Manifest for Android/Chromium-based browsers -->
+<link rel="manifest" href="manifest.json">
+
+<title>👨‍💻 Nathan Homann</title>
+
+<!-- Google Fonts, Tailwind, Feather, Marked -->
 <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://unpkg.com/feather-icons"></script>
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
 <style>
 html, body {
   margin: 0;
@@ -16,7 +32,6 @@ html, body {
   overflow-x: hidden !important;
   display: flex;
   flex-direction: column;
-  /* Smooth scroll behavior */
   scroll-behavior: smooth;
 }
 :root {
@@ -43,7 +58,6 @@ section::-webkit-scrollbar-thumb:hover {
 section {
   scrollbar-color: var(--main-green) var(--main-blue);
   scrollbar-width: thin;
-  /* Improve scrolling performance */
   will-change: transform;
 }
 .vertical-text {
@@ -89,12 +103,12 @@ main {
 }
 #sidebar {
   border-right: 4px solid var(--main-green);
-  transition: transform 0.3s ease; /* smooth sidebar toggle */
+  transition: transform 0.3s ease;
   will-change: transform;
 }
 #sidebar-right {
   border-left: 4px solid var(--main-green);
-  transition: transform 0.3s ease; /* smooth sidebar toggle */
+  transition: transform 0.3s ease;
   will-change: transform;
 }
 section.flex-1.p-6.backdrop-blur-sm.space-y-8.overflow-auto.ml-0.shadow-xl {
@@ -140,7 +154,6 @@ section.bg-black\/30.backdrop-blur-md.p-8.flex.flex-col.items-center.justify-cen
   line-height: 1.4;
   font-style: normal;
 }
-
 .markdown-content strong,
 .markdown-content em,
 .markdown-content i,
@@ -167,7 +180,6 @@ section.bg-black\/30.backdrop-blur-md.p-8.flex.flex-col.items-center.justify-cen
   color: #4da6ff;
   font-weight: bold;
   font-style: italic;
-  
 }
 .markdown-content a {
   color: var(--main-blue);
@@ -238,14 +250,19 @@ article.bg-gradient-to-br.from-white\/5.via-white\/10.to-white\/5:hover {
 }
 </style>
 </head>
-<body onload="feather.replace()" class="bg-gradient-to-br from-[var(--main-black)] via-gray-900 to-[var(--main-black)] text-white font-sans antialiased">
+<body class="bg-gradient-to-br from-[var(--main-black)] via-gray-900 to-[var(--main-black)] text-white font-sans antialiased" onload="feather.replace()">
 <header class="flex items-center justify-between p-4 z-50 shadow-lg"></header>
+
+<!-- Left menu handle -->
 <div id="menu-handle" class="fixed top-0 bottom-0 left-0 w-12 bg-transparent z-40 pointer-events-none flex items-center justify-center">
   <button id="menu-handle-button-left" class="pointer-events-auto cursor-pointer bg-transparent w-full h-full" aria-label="Toggle left menu"></button>
 </div>
+
+<!-- Right menu handle -->
 <div id="menu-handle-right" class="fixed top-0 bottom-0 right-0 w-12 bg-transparent z-40 pointer-events-none flex items-center justify-center">
   <button id="menu-handle-button-right" class="pointer-events-auto cursor-pointer bg-transparent w-full h-full" aria-label="Toggle right menu"></button>
 </div>
+
 <main class="p-4 relative z-10">
   <div class="flex h-full relative">
     <aside id="sidebar" class="w-64 p-4 flex-shrink-0 flex flex-col overflow-auto absolute top-0 bottom-0 left-0 transform -translate-x-full transition-transform duration-300 z-50 bg-[var(--main-black)] shadow-lg h-full">
@@ -258,6 +275,7 @@ article.bg-gradient-to-br.from-white\/5.via-white\/10.to-white\/5:hover {
         <div id="skills-graph" class="flex items-end justify-start space-x-2 flex-nowrap"></div>
       </section>
     </aside>
+
     <aside id="sidebar-right" class="w-64 p-4 flex-shrink-0 flex flex-col overflow-auto absolute top-0 bottom-0 right-0 transform translate-x-full transition-transform duration-300 z-50 bg-[var(--main-black)] shadow-lg h-full">
       <h2 class="font-serif text-xl mb-2">Toolbox</h2>
       <section id="menu-section-right" class="flex-1 overflow-y-auto overflow-x-hidden space-y-2 pr-1">
@@ -268,9 +286,9 @@ article.bg-gradient-to-br.from-white\/5.via-white\/10.to-white\/5:hover {
         <div id="skills-graph-right" class="flex items-end justify-start space-x-2 flex-nowrap"></div>
       </section>
     </aside>
+
     <section class="flex-1 p-6 backdrop-blur-sm space-y-8 overflow-auto ml-0 shadow-xl" style="will-change:transform;">
       <section class="bg-black/30 backdrop-blur-md p-8 flex flex-col items-center justify-center text-center shadow-lg">
-        <!-- Lazy loading for better performance -->
         <img src="logo.png" alt="Engineer profile" class="mb-4 shadow-lg" loading="lazy"/>
         <h2 class="font-serif text-2xl mb-4" style="color:#ffffff;font-weight:bold;font-style:normal;border-bottom:5px solid var(--main-blue-lighter);padding-bottom:0.5em;line-height:1.4;filter:contrast(1.2);text-shadow:1px 1px 2px black;">Nathan Homann</h2>
         <p class="mb-4 max-w-md">
@@ -286,9 +304,22 @@ article.bg-gradient-to-br.from-white\/5.via-white\/10.to-white\/5:hover {
     </section>
   </div>
 </main>
+
 <footer class="p-4 text-center z-50 shadow-lg">
   <p>© 2024</p>
 </footer>
+
+<!-- PWA service worker registration -->
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('service-worker.js')
+    .catch(err => console.error('Service Worker registration failed:', err));
+  });
+}
+</script>
+
+<!-- Fetch and parse cards -->
 <script>
 fetch('cards.json')
   .then(response => response.json())
@@ -396,6 +427,8 @@ fetch('cards.json')
   })
   .catch(error => {});
 </script>
+
+<!-- Fetch and parse skills -->
 <script>
 fetch('skills.json')
   .then(response=>response.json())
@@ -441,6 +474,8 @@ fetch('skills.json')
   })
   .catch(error=>{});
 </script>
+
+<!-- Drag scroll for skills sections -->
 <script>
 const skillsSection=document.getElementById('skills-section');
 let isDown=false;
